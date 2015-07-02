@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # bin/use <build-dir>
 
-echo "lein-heroku" && exit 0
+echo "Clojure (lein-heroku)" && exit 0
