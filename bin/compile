@@ -46,7 +46,7 @@ mkdir -p "$BUILD_DIR/.lein"
 cp "$LEIN_JAR_CACHE_PATH" "$LEIN_JAR_SLUG_PATH"
 
 # install lein script
-LEIN_BIN_PATH=$BUILD_DIR"/.lein/bin/lein"
+LEIN_BIN_PATH="$BUILD_DIR/.lein/bin/lein"
 echo "       Writing: lein script"
 mkdir -p $(dirname $LEIN_BIN_PATH)
 cp $LEIN_BIN_SOURCE $LEIN_BIN_PATH
@@ -62,13 +62,3 @@ mkdir -p $(dirname $PROFILE_PATH)
 
 echo "export LEIN_NO_DEV=\"\${LEIN_NO_DEV:-yes}\"" >> $PROFILE_PATH
 echo 'export PATH="$HOME/.jdk/bin:$HOME/.lein/bin:$PATH"' >> $PROFILE_PATH
-
-# repack cache with new assets
-rm -rf $CACHE_STORE_DIR
-mkdir -p $(dirname $CACHE_STORE_DIR)
-cp -r $CACHE_TARGET_DIR $CACHE_STORE_DIR
-
-if [ "$LEIN_INCLUDE_IN_SLUG" = "no" ]; then
-    rm "$LEIN_JAR_SLUG_PATH"
-    rm -rf "$CACHE_TARGET_DIR"
-fi
